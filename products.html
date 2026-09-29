@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenden | Products</title>
+    <!-- Tailwind CSS CDN link (same as home page) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Responsive navbar (same as home page, links updated) -->
+    <nav class="bg-green-100 p-3 flex items-center justify-between shadow-xl sticky top-0 z-10">
+        <h1 class="text-2xl uppercase"><a href="index.html">Greenden</a></h1>
+
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 md:hidden">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        </svg>
+
+        <ul class="gap-5 text-gray-600 hidden md:flex">
+            <li><a class="hover:underline hover:text-black" href="index.html">Home</a></li>
+            <li><a class="hover:underline hover:text-black text-black font-medium" href="products.html">Products</a></li>
+            <li><a class="hover:underline hover:text-black" href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Products section -->
+    <section class="p-4 md:px-10 text-center">
+        <h1 class="text-3xl md:text-4xl font-bold mt-8">Our Products</h1>
+    
+
+        <!-- Search bar -->
+        <input id="searchBox" type="text" placeholder="Search for a Product..."
+            class="border border-black p-3 mt-6 w-full md:w-11/12 focus:outline-none focus:ring-2 focus:ring-green-300">
+
+        <!-- Product grid: 2 columns on mobile, 4 on desktop -->
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 mt-8">
+
+            <div class="product">
+                <img src="./images/bestseller_1.jpg" alt="Rose Plant" class="w-full h-64 md:h-80 object-cover hover:shadow-xl transform hover:-translate-y-2 transition">
+                <h2 class="product-name text-lg mt-2">Rose Plant</h2>
+                <p>$20</p>
+            </div>
+
+            <div class="product">
+                <img src="./images/bestseller_2.jpg" alt="Lily Plant" class="w-full h-64 md:h-80 object-cover hover:shadow-xl transform hover:-translate-y-2 transition">
+                <h2 class="product-name text-lg mt-2">Lily Plant</h2>
+                <p>$50</p>
+            </div>
+
+            <div class="product">
+                <img src="./images/bestseller_3.jpg" alt="Hibiscus Rose" class="w-full h-64 md:h-80 object-cover hover:shadow-xl transform hover:-translate-y-2 transition">
+                <h2 class="product-name text-lg mt-2">Snake Plant</h2>
+                <p>$30</p>
+            </div>
+
+            <div class="product">
+                <img src="./images/bestseller_4.jpg" alt="Snake Plant" class="w-full h-64 md:h-80 object-cover hover:shadow-xl transform hover:-translate-y-2 transition">
+                <h2 class="product-name text-lg mt-2">Lavender Plant</h2>
+                <p>$80</p>
+            </div>
+
+            <div class="product">
+                <img src="./images/bestseller_5.jpg" alt="Mariegold Plant" class="w-full h-64 md:h-80 object-cover hover:shadow-xl transform hover:-translate-y-2 transition">
+                <h2 class="product-name text-lg mt-2">Mariegold Plant</h2>
+                <p>$20</p>
+            </div>
+
+            <div class="product">
+                <img src="./images/bestseller_6.jpg" alt="Maidenhair Fern" class="w-full h-64 md:h-80 object-cover hover:shadow-xl transform hover:-translate-y-2 transition">
+                <h2 class="product-name text-lg mt-2">Maidenhair FernPlant</h2>
+                <p>$30</p>
+            </div>
+
+            <div class="product">
+                <img src="./images/bestseller_7.jpg" alt="Echeveria Plant" class="w-full h-64 md:h-80 object-cover hover:shadow-xl transform hover:-translate-y-2 transition">
+                <h2 class="product-name text-lg mt-2">Cyclamen Plant</h2>
+                <p>$50</p>
+            </div>
+
+            <div class="product">
+                <img src="./images/bestseller_8.jpg" alt="Cyclamen Plant" class="w-full h-64 md:h-80 object-cover hover:shadow-xl transform hover:-translate-y-2 transition">
+                <h2 class="product-name text-lg mt-2">Echeveria Plant</h2>
+                <p>$70</p>
+            </div>
+
+        </div>
+
+        <p id="noResults" class="hidden mt-10 text-gray-600">No products match your search.</p>
+    </section>
+
+    <!-- Footer (same as home page) -->
+    <section id="contact" class="bg-green-100 p-10 flex flex-col gap-5 mt-10">
+        <h1 class="text-4xl font-bold">Greenden</h1>
+        <p>The Standard Chunk of lorem ipsum used since 1950 is reproduced below for those interest </p>
+        <p>©2026 Greenden.com</p>
+    </section>
+
+    <!-- Live search filter -->
+    <script>
+        const searchBox = document.getElementById("searchBox");
+        const products = document.querySelectorAll(".product");
+        const noResults = document.getElementById("noResults");
+
+        searchBox.addEventListener("input", function () {
+            const term = searchBox.value.toLowerCase().trim();
+            let visible = 0;
+
+            products.forEach(function (item) {
+                const name = item.querySelector(".product-name").textContent.toLowerCase();
+                const match = name.includes(term);
+                item.style.display = match ? "" : "none";
+                if (match) visible++;
+            });
+
+            noResults.classList.toggle("hidden", visible !== 0);
+        });
+    </script>
+</body>
+
+</html>
